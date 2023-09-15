@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Prompt</title>
+
+    <script>
+        function CreateClick(){
+            FolderName = prompt("Enter Folder Name");
+            if(FolderName == null){
+                alert("You cancled");
+            }else if(FolderName == ""){
+                alert("Please enter folder name");
+
+            } else {
+                document.querySelector("p").innerHTML += "Folder Name = " + FolderName + '<br>' ; 
+
+            }
+        }
+    </script>
+</head>
+<body>
+    <button onclick="CreateClick()" >Create Folder</button>
+    <p></p>
+    
+</body>
+</html>
