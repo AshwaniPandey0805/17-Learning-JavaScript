@@ -1,0 +1,72 @@
+<!-- Dynamically  adding New element into Array 
+    -> push()    : It adds  new element(s) as last item.
+    -> unshift() : It adds  new element(s) as first item.
+    -> splice()  : It adds new element(s) at specified index.
+                    splice(index, deleteCount, newItems)
+
+
+push() 
+<script>
+    var categories = ["Electronics", "Footwares"];
+    categories.push("Fashion", "Men Cloth's"); 
+    for(var items of categories){
+        document.write(items + "<br>");
+    }
+</script>
+
+output :
+        Electronics
+        Footwares
+        Fashion
+        Men Cloth's
+
+-->
+<!-- 
+    unshift() example
+<script>
+    var categories = ["Electronics", "Footwares"];
+    categories.unshift("Fashion", "Men Cloth's"); 
+    for(var items of categories){
+        document.write(items + "<br>");
+    }
+</script>
+    output : 
+        Fashion
+        Men Cloth's
+        Electronics
+        Footwares
+
+-->
+
+<!-- 
+    => splice() example :
+            <script>
+            var categories = ["Electronics", "Footwares"];
+            categories.splice(1, 0,"Fashion", "Men Cloth's"); 
+            for(var items of categories){
+                document.write(items + "<br>");
+            }
+</script>
+    output :    Electronics
+                Fashion
+                Men Cloth's
+                Footwares
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Manipulation</title>
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+    <button class="btn btn-danger m-2 p-2" >Submit</button>
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+</body>
+</html>
+
+
+
