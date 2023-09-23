@@ -24,8 +24,9 @@
             })
         }
 
-        function LoadProducts(){
-            fetch("http://fakestoreapi.com/products")
+        function LoadProducts(url){
+            document.querySelector("main").innerHTML = " ";
+            fetch(url)
             .then(function(response){
                 return response.json();
             })
@@ -52,7 +53,7 @@
                             </dl>    
                         </div>
                         <div class="card-footer">
-                            <button class="btn btn-danger w-100" ><span class="bi bi-cart4"></span>Add to card</button>    
+                            <button onclick="AddClick(${product.id})" class="btn btn-danger w-100" ><span class="bi bi-cart4"></span>Add to card</button>    
                         </div>
                     `
                     document.querySelector("main").appendChild(div);
@@ -62,7 +63,61 @@
 
         function bodyLoad(){
             LoadCategories();
-            LoadProducts();
+            LoadProducts("http://fakestoreapi.com/products");
+            AddToCart(); 
+        }
+
+        function ChangeProduct(){
+            var category = document.getElementById("lstCategories").value;
+            if(category == "All"){
+                LoadProducts("http://fakestoreapi.com/products")
+            }
+            else{
+                LoadProducts(`http://fakestoreapi.com/products/category/${category}`);
+            }
+            
+        }
+
+        var cartItems = [];
+        
+        function AddToCart(){
+            document.getElementById("lblCount").innerHTML = cartItems.length;
+        }
+
+        function AddClick(id){
+            fetch(`http://fakestoreapi.com/products/${id}`)
+            .then(function(response){
+                return response.json();
+            })
+            .then(function(data){
+                cartItems.push(data);
+                alert(`${data.title} added to cartItem`); 
+                AddToCart(); 
+            })
+
+        }
+
+        function LoadCartItems() {
+            document.querySelector("tbody").innerHTML = " ";
+            for(var item of cartItems){
+                var tr = document.createElement("tr");
+                var tdTitle = document.createElement("td");
+                var tdPrice = document.createElement("td");
+                var tdPreivews = document.createElement("td");
+
+                tdTitle.innerHTML = item.title;
+                tdPrice.innerHTML = item.price;
+                tdPreivews.innerHTML = `
+                <img src=${item.image} width="50" height="50"> 
+                `;
+
+                tr.appendChild(tdTitle);
+                tr.appendChild(tdPrice);
+                tr.appendChild(tdPreivews);
+
+                document.querySelector("tbody").appendChild(tr); 
+            }
+
         }
 
     </script>
@@ -78,7 +133,7 @@
         <nav class="col-2">
             <label class="form-label">Select Categories</label>
             <div>
-                <select id="lstCategories" class="form-select">
+                <select id="lstCategories" onchange="ChangeProduct()" class="form-select">
 
                 </select>
             </div>
@@ -86,9 +141,35 @@
         <main class="col-8 d-flex flex-wrap overflow-auto"  ></main>
 
         <aside class="col-2" >
-            <button class="btn btn-danger w-100">
-                <span class="bi bi-cart"></span> Your Cart Items
+            <button onclick="LoadCartItems()"  data-bs-target="#cart" data-bs-toggle="modal"  class="btn btn-danger w-100">
+                <span class="bi bi-cart"></span> [ <span id="lblCount"></span> ] Your Cart Items
             </button>
+
+            <div class="modal fade" id="cart">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>Your Cart Items</h2>
+                            <button class="btn-close" data-bs-dismiss="modal" ></button>
+                        </div>
+                        <div class="modal-body" >
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Price</th>
+                                        <th>Preview</th>
+                                    </tr>
+                                    <tbody>
+
+                                    </tbody>
+
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </aside>
     </section>
 
