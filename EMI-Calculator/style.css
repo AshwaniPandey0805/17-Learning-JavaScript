@@ -5,7 +5,7 @@
     background: #fff;
     font-weight: 400;
     color: #333;
-    background-color: #fff;
+    
     background-clip: padding-box;
     border: 1px solid #ccc;
     border-radius: 10px;
@@ -98,7 +98,7 @@
     opacity: 0.5;
 }
 
-.loan-cal .calculate-button{
+.loan-cal .calculate-btn{
     padding: 10px 32px;
     background: #e63946;
     color: #ccc;
@@ -109,6 +109,10 @@
     font-size: 14px;
     font-weight: 900;
     text-transform: uppercase;
+}
+
+.loan-cal .right{
+    width: 50%;
 }
 
 @media (max-width: 650px) {
