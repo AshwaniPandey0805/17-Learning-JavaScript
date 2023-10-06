@@ -94,4 +94,28 @@ hight = String(hight);
 console.log(typeof hight); // string
 console.log(hight); // 80 ->  80
 
+// ********************************* Operations ********************************
+
+let value = 10;
+let negativeValue = -value;
+console.log(negativeValue); // -10
+
+let str1 = "Ashwani";
+let str2 = " Pandey";
+let str3 = str1 + str2;
+console.log(str3); // Ashwani Pandey
+
+let str4 = "Ashwani";
+let str5 = "Pandey";
+let str6 = str4 + " " + str5;
+console.log(str6); // Ashwani Pandey
+
+
+console.log("1" + 1); // 11
+console.log("1" + "1"); // 11
+console.log(1 + "1"); // 11
+console.log("1" + 1 + 1); // 111
+console.log( "1" + "1" + "1"); // 111
+console.log("1" + (1 + 1)); // 12 
+console.log((1 + 1) + "1"); // 21
 
